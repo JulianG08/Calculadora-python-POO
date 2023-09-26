@@ -9,3 +9,15 @@ class Operacion:
         self.num01 = num01
         self.operacion = operacion
         self.num02 = num02
+
+    def suma(self, num01, num02):
+        return num01 + num02
+    
+    def resta(self, num01, num02):
+        return num01 - num02
+    
+    def multiplicacion(self, num01, num02):
+        return num01 * num02
+    
+    def division(self, num01, num02):
+        return num01 / num02
