@@ -1,4 +1,5 @@
 import psycopg2
+import math
 
 class Operacion:
     num01 = ""
@@ -21,3 +22,27 @@ class Operacion:
     
     def division(self, num01, num02):
         return num01 / num02
+    
+    def seno(self, num01):
+        return math.sin(math.radians(num01))
+    
+    def coseno(self, num01):
+        return math.cos(math.radians(num01))
+    
+    def tangente(self, num01):
+        return math.tan(math.radians(num01))
+    
+    def promedio(self, num01, num02):
+        return (num01 + num02) / 2
+    
+    def maximo(self, num01, num02):
+        if num01 < num02:
+            return num02
+        else:
+            return num01
+        
+    def minimo(self, num01, num02):
+        if num01 < num02:
+            return num01
+        else:
+            return num02
