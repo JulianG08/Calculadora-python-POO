@@ -3,9 +3,8 @@ def numeros_a_palabras(numero: float) -> str:
         return 'Cero'
 
     unidades = ['', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve']
-    otros = ['', 'mil', 'millones', 'mil millones']
-    otros_grandes = ['', 'mil', 'millones', 'mil millones', 'mil billones', 'millón de millones', 'mil billones de billones']
-    
+    otros_grandes = ['', 'mil', 'millón', 'millones', 'mil millones', 'billón', 'billones', 'trillón', 'trillones', 'cuatrillón', 'cuatrillones']
+
     casos_especiales = {
         10: "diez",
         11: "once",
@@ -14,19 +13,19 @@ def numeros_a_palabras(numero: float) -> str:
         14: "catorce",
         15: "quince"
     }
-    
+
     def armar_cientos(num: str) -> str:
         unidades = ['', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve']
         decenas = ['', 'dieci', 'veinti', 'treinta y ', 'cuarenta y ', 'cincuenta y ', 'sesenta y ', 'setenta y ', 'ochenta y ', 'noventa y ']
         centenas = ['', 'ciento', 'doscientos', 'trescientos', 'cuatrocientos', 'quinientos', 'seiscientos', 'setecientos', 'ochocientos', 'novecientos']
-        
+
         cientos = int(num[0]) if len(num) > 2 else 0
         decena, unidad = num[-2:]
         return (f"{centenas[cientos]} " if cientos != 0 else '') + decenas[int(decena)] + unidades[int(unidad)]
-    
+
     def dividir_num(num: str) -> list:
         return [num[i:i+3] for i in range(0, len(num), 3)]
-    
+
     parte_entera = int(numero)
     parte_decimal = int((numero - parte_entera) * 100)
 
@@ -43,7 +42,7 @@ def numeros_a_palabras(numero: float) -> str:
                 continue
 
             if len(str(num)) == 1:
-                en_palabras = unidades[num] + f" {otros_grandes[i]} " + en_palabras
+                en_palabras = unidades[num] + f" {otros_grandes[i]}" + ("es" if i > 1 else "") + " " + en_palabras
             elif num > 15:
                 resultado = armar_cientos(parte).strip()
 
@@ -52,9 +51,9 @@ def numeros_a_palabras(numero: float) -> str:
                 elif resultado == 'ciento':
                     resultado = 'cien'
 
-                en_palabras = resultado + f" {otros_grandes[i]} " + en_palabras
+                en_palabras = resultado + f" {otros_grandes[i]}" + ("es" if i > 1 else "") + " " + en_palabras
             else:
-                en_palabras = casos_especiales[num] + f" {otros_grandes[i]} " + en_palabras
+                en_palabras = casos_especiales[num] + f" {otros_grandes[i]}" + ("es" if i > 1 else "") + " " + en_palabras
 
     # Convertir la parte decimal
     if parte_decimal > 0:
