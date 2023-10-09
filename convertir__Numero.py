@@ -3,7 +3,7 @@ def numeros_a_palabras(numero: float) -> str:
         return 'Cero'
 
     unidades = ['', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve']
-    otros_grandes = ['', 'mil', 'millón', 'millones', 'mil millones', 'billón', 'billones', 'trillón', 'trillones', 'cuatrillón', 'cuatrillones']
+    otros_grandes = ['', 'mil', 'millon', 'mil millon', 'billon']
 
     casos_especiales = {
         10: "diez",
@@ -42,7 +42,7 @@ def numeros_a_palabras(numero: float) -> str:
                 continue
 
             if len(str(num)) == 1:
-                en_palabras = unidades[num] + f" {otros_grandes[i]}" + ("es" if i > 1 else "") + " " + en_palabras
+                en_palabras = unidades[num] + f" {otros_grandes[i]}" + ("" if i == 1 else "es") + " " + en_palabras
             elif num > 15:
                 resultado = armar_cientos(parte).strip()
 
@@ -53,7 +53,7 @@ def numeros_a_palabras(numero: float) -> str:
 
                 en_palabras = resultado + f" {otros_grandes[i]}" + ("es" if i > 1 else "") + " " + en_palabras
             else:
-                en_palabras = casos_especiales[num] + f" {otros_grandes[i]}" + ("es" if i > 1 else "") + " " + en_palabras
+                en_palabras = casos_especiales[num] + f" {otros_grandes[i]}" + ("" if i < 1 else "es") + " " + en_palabras
 
     # Convertir la parte decimal
     if parte_decimal > 0:
@@ -73,5 +73,5 @@ print(numeros_a_palabras(16091))
 print(numeros_a_palabras(99))
 print(numeros_a_palabras(1000000))
 print(numeros_a_palabras(4000000))
-print(numeros_a_palabras(99999999999999999999))
+print(numeros_a_palabras(999999999999999999))
 print(numeros_a_palabras(12345.67))
